@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+  mariadb:
+    image: 'bitnami/mariadb:10.2'
+    ports:
+      - 33993:3306
+    volumes:
+      - ./data:/bitnami/mariadb/data
+      - ./database/scripts:/bitnami/mariadb/scripts
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_ROOT_PASSWORD=password123
+      - MARIADB_USER=my_user
+      - MARIADB_DATABASE=ht_doc
+      - MARIADB_PASSWORD=my_password
+
+#  document-management:
+#    tty: true
+#    image: bitnami/laravel:6-debian-9
+#    environment:
+#      - DB_HOST=mariadb
+#      - DB_USERNAME=my_user
+#      - DB_DATABASE=ht_doc
+#      - DB_PASSWORD=my_password
+#    depends_on:
+#      - mariadb
+#    ports:
+#      - 3003:3000
+#    volumes:
+#      - ../document-management/:/app
+##    # privileged: true # Privileged mode could be required to run this container under Windows
